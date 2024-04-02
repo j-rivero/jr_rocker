@@ -8,9 +8,12 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
         cmake \
         gdb \
         git \
+        quilt \
         less \
         tree \
+        ubuntu-dev-tools \
         vim \
+        wget \
         xclip \
     # Clean
     && apt-get clean
