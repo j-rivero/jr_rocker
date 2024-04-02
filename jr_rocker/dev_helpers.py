@@ -3,9 +3,9 @@ import pkgutil
 from rocker.extensions import RockerExtension
 
 
-class EnUSLocale(RockerExtension):
+class DevHelpers(RockerExtension):
 
-    name = 'mp_en_us_locale'
+    name = 'jr_dev_helpers'
 
     @classmethod
     def get_name(cls):
@@ -13,7 +13,7 @@ class EnUSLocale(RockerExtension):
 
     def __init__(self):
         self._env_subs = None
-        self.name = EnUSLocale.get_name()
+        self.name = DevHelpers.get_name()
 
     def get_environment_subs(self):
         if not self._env_subs:
@@ -24,12 +24,12 @@ class EnUSLocale(RockerExtension):
         return ''
 
     def get_snippet(self, cliargs):
-        snippet = pkgutil.get_data('mp_rocker', 'templates/{}_snippet.Dockerfile.em'.format(self.name)).decode('utf-8')
+        snippet = pkgutil.get_data('jr_rocker', 'templates/{}_snippet.Dockerfile.em'.format(self.name)).decode('utf-8')
         return em.expand(snippet, self.get_environment_subs())
 
     @staticmethod
     def register_arguments(parser, defaults={}):
-        parser.add_argument('--mp-en-us-locale',
+        parser.add_argument('--jr-dev-helpers',
             action='store_true',
-            help='configure en_US.UTF-8 locale')
+            help='install development tools')
 
