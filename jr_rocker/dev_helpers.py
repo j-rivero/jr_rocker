@@ -1,5 +1,7 @@
-import em
 import pkgutil
+
+import em
+
 from rocker.extensions import RockerExtension
 
 
@@ -24,12 +26,13 @@ class DevHelpers(RockerExtension):
         return ''
 
     def get_snippet(self, cliargs):
-        snippet = pkgutil.get_data('jr_rocker', 'templates/{}_snippet.Dockerfile.em'.format(self.name)).decode('utf-8')
+        snippet = pkgutil.get_data(
+            'jr_rocker',
+            'templates/{}_snippet.Dockerfile.em'.format(self.name)).decode('utf-8')
         return em.expand(snippet, self.get_environment_subs())
 
     @staticmethod
     def register_arguments(parser, defaults={}):
         parser.add_argument('--jr-dev-helpers',
-            action='store_true',
-            help='install development tools')
-
+                            action='store_true',
+                            help='install development tools')

@@ -6,8 +6,10 @@ RUN export DEBIAN_FRONTEND=noninteractive; \
         build-essential \
         clang \
         cmake \
+        equivs \
         gdb \
         git \
+        git-buildpackage \
         quilt \
         less \
         tree \
